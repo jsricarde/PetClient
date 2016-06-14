@@ -1,0 +1,34 @@
+{
+  "name": "petclient",
+  "private": true,
+  "description": "this is the client mobile for petime app",
+  "main": "",
+  "authors": [
+    "sricarde"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-material": "^1.0.9",
+    "angular-socket-io": "^0.7.0",
+    "angular-material-icons": "^0.7.0",
+    "animate.css": "^3.5.2",
+    "angular-local-storage": "^0.2.7",
+    "socket.io-client": "sio-client#^1.4.4",
+    "angular-moment": "^0.10.3",
+    "moment": "^2.13.0",
+    "ngCordova": "^0.1.26-alpha",
+    "ionic-datepicker": "^1.1.0",
+    "ionic-timepicker": "^0.5.1",
+    "ionic-color-picker": "^1.0.3"
+  }
+}

@@ -1,0 +1,47 @@
+<ion-view view-title="Pet Details">
+  <ion-nav-buttons side="right">
+    <a ng-if="user" class="button button-small button-primary" href="#/app/pets/edit/{{pet._id}}">Edit</a>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="list card">
+      <div class="item item-body item-text-wrap">
+        <img class="full-image" ng-src="img/goshi.jpg">
+
+        <!--        <img class="full-image" ng-src="{{baseURL + dish.image}}" alt="Uthappizza">
+-->
+        <h2>{{pet.name}},  <span class="label_pets_locale">{{pet.country}}, {{pet.city}}</span></h2>
+        <p>{{pet.description}}</p>
+        <p>Age: {{pet.age}}</p>
+        <p>Color: {{pet.color}}</p>
+        <!--        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>-->
+        <div class="content_user list" ng-if="user">
+          <form name="formPetStatus" ng-submit="doUpdateStatus()">
+            <label class="item item-input item-select">
+              <button class="button button-small button-positive" type="submit">
+                Update status
+              </button>
+              <select ng-model="petData.status">
+                <option value="adopt" selected>For adopt</option>
+                <option value="missed">Missed</option>
+                <option value="adopted" selected>Adopted</option>
+              </select>
+            </label>
+          </form>
+          <button class="button button-full button-positive" ng-click="doEnterRoom()">
+              Chat
+          </button>
+        </div>
+        <div class="content_user" ng-if="!user">
+          <p>
+            <button class="button button-full button-positive" ng-click="doEnterRoom()">
+            Adopt
+          </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

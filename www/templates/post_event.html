@@ -1,0 +1,38 @@
+<ion-view view-title="Post a Event">
+    <ion-content>
+        <form ng-submit="doInsertEvent()">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="eventData.name" placeholder="Name">
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openDatePicker()">Date of start the event
+                    </button>
+                    <span class="label_position">{{eventData.date_start_event_label}} </span>
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openTimePicker()">Time of start the event
+                    </button>
+                    <span class="label_position">{{eventData.time_start_event_label}} </span>
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openCurrentPos()">Set the current position
+                    </button>
+                    <span class="label_position">{{eventData.label_position}} </span>
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="eventData.country" placeholder="Country">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="eventData.city" placeholder="City">
+                </label>
+                <label class="item item-input">
+                        <textarea ng-model="eventData.description" placeholder="Description of the event"></textarea>
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">Post</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
