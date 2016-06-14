@@ -6,54 +6,69 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 'angularMoment', 'ionic-datepicker', 'ionic-timepicker', 'ngCordova', 'petClient.controllers', 'petClient.services', 'ionic-color-picker'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+  .run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
+  })
 
-.config(function($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
       .state('app', {
-      url: '/app',
-      templateUrl: 'templates/sidebar.html',
-      controller: 'AppCtrl'
-    })
+        url: '/app',
+        templateUrl: 'templates/sidebar.html',
+        controller: 'AppCtrl'
+      })
 
-    .state('login', {
-      url: "/login",
-      templateUrl: "templates/login.html",
-      controller: 'LoginController'
-    })
+      .state('login', {
+        url: "/login",
+        templateUrl: "templates/login.html",
+        controller: 'LoginController'
+      })
 
-    .state('app.account', {
-      url: '/account',
-      views: {
-        'mainContent': {
-          templateUrl: 'templates/account.html',
-          controller: 'AccountController'
+      .state('app.account', {
+        url: '/account',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/account.html',
+            controller: 'AccountController'
+          }
         }
-      }
-    })
+      })
 
-    .state('register', {
-      url: "/register",
-      templateUrl: 'templates/register.html',
-      controller: 'RegisterController'
-    })
+      .state('app.account_edit', {
+        url: '/account/edit/:id',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/register.html',
+            controller: 'AccountEditController',
+            resolve: {
+              user_detail: ['$stateParams', 'userFactory', function ($stateParams, userFactory) {
+                return userFactory.getUserById($stateParams.id);
+              }]
+            }
+          }
+        }
+      })
 
-    .state('app.post_event', {
+      .state('register', {
+        url: "/register",
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterController'
+      })
+
+      .state('app.post_event', {
         url: '/post_event',
         views: {
           'mainContent': {
@@ -62,7 +77,7 @@ angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 
           }
         }
       })
-      
+
       .state('app.pets', {
         cache: false,
         url: '/pets',
@@ -71,7 +86,7 @@ angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 
             templateUrl: 'templates/pets.html',
             controller: 'PetsController',
             resolve: {
-              pets: ['petFactory', 'user', function(petFactory, user) {
+              pets: ['petFactory', 'user', function (petFactory, user) {
                 return petFactory.getPetsByNotUser(user);
               }]
             }
@@ -79,56 +94,56 @@ angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 
         }
       })
 
-    .state('app.mypets', {
-      cache: false,
-      url: '/mypets',
-      views: {
-        'mainContent': {
-          templateUrl: 'templates/mypets.html',
-          controller: 'MyPetsController',
-          resolve: {
-            pets: ['petFactory', 'user', function(petFactory, user) {
-              return petFactory.getPetsByUser(user);
-            }]
+      .state('app.mypets', {
+        cache: false,
+        url: '/mypets',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/mypets.html',
+            controller: 'MyPetsController',
+            resolve: {
+              pets: ['petFactory', 'user', function (petFactory, user) {
+                return petFactory.getPetsByUser(user);
+              }]
+            }
           }
         }
-      }
-    })
+      })
 
-    .state('app.pet_detail', {
-      url: '/pets/:id',
-      views: {
-        'mainContent': {
-          templateUrl: 'templates/pet_detail.html',
-          controller: 'PetDetailController',
-          resolve: {
-            pet: ['$stateParams', 'petFactory', function($stateParams, petFactory) {
-              return petFactory.getPetById($stateParams.id);
-            }],
-            msgs: ['$stateParams', 'petFactory', function($stateParams, petFactory) {
-              return petFactory.getMsgsById($stateParams.id);
-            }]
+      .state('app.pet_detail', {
+        url: '/pets/:id',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/pet_detail.html',
+            controller: 'PetDetailController',
+            resolve: {
+              pet: ['$stateParams', 'petFactory', function ($stateParams, petFactory) {
+                return petFactory.getPetById($stateParams.id);
+              }],
+              msgs: ['$stateParams', 'petFactory', function ($stateParams, petFactory) {
+                return petFactory.getMsgsById($stateParams.id);
+              }]
+            }
           }
         }
-      }
-    })
+      })
 
-    .state('app.pet_edit', {
-      url: '/pets/edit/:id',
-      views: {
-        'mainContent': {
-          templateUrl: 'templates/post_pet.html',
-          controller: 'PetEditController',
-          resolve: {
-            pet: ['$stateParams', 'petFactory', function($stateParams, petFactory) {
-              return petFactory.getPetById($stateParams.id);
-            }]
+      .state('app.pet_edit', {
+        url: '/pets/edit/:id',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/post_pet.html',
+            controller: 'PetEditController',
+            resolve: {
+              pet: ['$stateParams', 'petFactory', function ($stateParams, petFactory) {
+                return petFactory.getPetById($stateParams.id);
+              }]
+            }
           }
         }
-      }
-    })
+      })
 
-    .state('app.room', {
+      .state('app.room', {
         cache: false,
         url: '/room',
         views: {
@@ -136,7 +151,7 @@ angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 
             templateUrl: 'templates/room.html',
             controller: 'RoomController',
             resolve: {
-              msgs: ['localStorageService', 'petFactory', function(localStorageService, petFactory) {
+              msgs: ['localStorageService', 'petFactory', function (localStorageService, petFactory) {
                 return petFactory.getMsgsById(localStorageService.get('room'));
               }]
             }
@@ -181,23 +196,23 @@ function formValidateAfter() {
   function link(scope, element, attrs, ctrl) {
     var validateClass = 'form-validate';
     ctrl.validate = false;
-    element.bind('focus', function(evt) {
+    element.bind('focus', function (evt) {
       if (ctrl.validate && ctrl.$invalid) // if we focus and the field was invalid, keep the validation
       {
         element.addClass(validateClass);
-        scope.$apply(function() {
+        scope.$apply(function () {
           ctrl.validate = true;
         });
       } else {
         element.removeClass(validateClass);
-        scope.$apply(function() {
+        scope.$apply(function () {
           ctrl.validate = false;
         });
       }
 
-    }).bind('blur', function(evt) {
+    }).bind('blur', function (evt) {
       element.addClass(validateClass);
-      scope.$apply(function() {
+      scope.$apply(function () {
         ctrl.validate = true;
       });
     });

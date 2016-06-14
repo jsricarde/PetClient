@@ -1,18 +1,18 @@
 <ion-view view-title="Account Details">
   <ion-nav-buttons side="right">
-    <a ng-if="user" class="button button-small button-primary" href="#/app/account/edit/{{userid}}">Edit</a>
+    <a ng-if="user" class="button button-small button-primary" href="#/app/account/edit/{{user.id}}">Edit</a>
   </ion-nav-buttons>
   <ion-content>
     <div class="list card">
       <div class="item item-body item-text-wrap">
-        <img class="medium-image" ng-src="img/person.png">
-        <h2>{{user.name}},  <span class="label_pets_locale">{{user.country}}, {{user.city}}</span></h2>
-        <p>Age: {{user.age}}</p>
-<!--        <p>Email: {{user.email}}</p>
--->
+        <div class="item item-image">
+          <img ng-src="img/person.png">
+        </div>
+        <h2>{{user.username}}, <span class="label_pets_locale">{{user.country}}, {{user.city}}</span></h2>
+        <p>Email: {{user.email}}</p>
         <p>Type: {{user.type}}</p>
         <div class="content_user list" ng-if="user">
-          
+
         </div>
         <div class="content_user" ng-if="!user">
           <p>
