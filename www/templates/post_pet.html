@@ -1,0 +1,65 @@
+<ion-view view-title="{{title}}">
+    <ion-content>
+        <form name="formPet" ng-submit="doSubmitPet()">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="petData.name" placeholder="Name">
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openCurrentPos()">Set the current position
+                    </button>
+                    <span class="label_position">{{petData.label_position}} </span>
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" color-picker="" color-mode="name" model-mode="name" ng-model="petData.color" modal-title="Choose!" color-box="{{petData.color}}" named-colors="customColors" >
+                    {{petData.color || &apos;Choose a color&apos; }} 
+                    </button>
+                </label>
+                <label class="item item-input">
+                    <input name="country" type="text" ng-model="petData.country" placeholder="Country" required form-validate-after>
+                </label>
+<!--                <p class="error_p" ng-show="formPet.country.$error.required" class="ng-hide">* Country is required</p>
+-->
+                <label class="item item-input">
+                    <input type="text" ng-model="petData.city" placeholder="City" required  form-validate-after>
+                </label>
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Size
+                    </div>
+                    <select ng-model="petData.size">
+                        <option value="little">Little</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="big">Big</option>
+                    </select>
+                </label>
+                <div class="item item-input range">
+                    <div class="input-label div_age">
+                        Age {{petData.age}}
+                    </div>
+                    <i class="icon ion-minus-round"></i>
+                    <input type="range" name="age" ng-model="petData.age" min="1" max="50">
+                    <i class="icon ion-plus-round"></i>
+                </div>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Type of post
+                    </div>
+                    <select ng-model="petData.status">
+                        <option value="adopt" selected>For adopt</option>
+                        <option value="missed">Missed</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                        <textarea ng-model="petData.description" placeholder="Description of a pet"></textarea>
+                </label>
+                <div>
+                </div>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">{{button}}</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

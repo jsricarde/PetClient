@@ -1,0 +1,87 @@
+/* Empty. Add your own CSS if you like */
+ion-content {
+    margin-bottom: 50px !important;
+}
+
+.no-border {
+    border: none;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.current-user {
+    float: left;
+    clear: both;
+}
+
+.not-current-user {
+    float: right;
+    clear: both;
+}
+
+.current-user .details {
+    background-color: #72CBFF;
+}
+
+.not-current-user .details {
+    background-color: #DCDCDC;
+}
+
+/* Empty. Add your own CSS if you like */
+.center{
+     text-align:center;
+}
+.div_age{
+   padding-left: 2%; 
+}
+
+.prev_btn_section{
+    color: #387ef5;
+}
+
+.selected_date_full, .selected_date, .ionic_datepicker_popup .popup-buttons button{
+    background-color: #387ef5 !important;
+    border-color: #387ef5 !important;
+}
+
+.popup-body .heading{
+    background-color: #387ef5;
+}
+
+.ionic_timepicker_popup .heading{
+    background-color: #387ef5 !important;
+    border-color: #387ef5 !important;
+}
+
+.ionic_timepicker_popup .button_set, .ionic_timepicker_popup .button_close{
+    background-color: #387ef5 !important;
+    border-color: #387ef5 !important;
+}
+
+.label_position{
+    margin-left: 10%;
+}
+
+.div_pets_info{
+    margin-left: 15px;
+}
+
+.img_pets_avatar{
+    max-width: 50px !important;
+    max-height: 50px !important;
+}
+
+.error_p{
+    color:red;
+    
+}
+
+.form-validate.ng-invalid {
+        border-bottom: 1px solid #cc2511;
+            margin-right: 5%;
+}
+.form-validate.ng-valid {
+    border: none;
+}

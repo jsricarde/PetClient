@@ -1,0 +1,60 @@
+<ion-view view-title="Register">
+    <ion-content>
+        <form name="formUser" ng-submit="doInsertUser()">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.username" placeholder="Username">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.first_name" placeholder="First Name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.last_name" placeholder="Last Name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.email" placeholder="Email">
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openDatePicker()">Date of birth
+                    </button>
+                    <span class="label_position">{{registerData.age_label}} </span>
+                </label>
+                <label class="item item-input">
+                    <button type="button" class="button" style="" ng-click="openCurrentPos()">Set the current position
+                    </button>
+                    <span class="label_position">{{registerData.label_position}} </span>
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.country" placeholder="Country">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="registerData.city" placeholder="City">
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Gender
+                    </div>
+                    <select ng-model="registerData.gender">
+                        <option value="male" selected>Male</option>
+                        <option value="female">female</option>
+                    </select>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Type
+                    </div>
+                    <select ng-model="registerData.type">
+                        <option value="natural_person" selected>Natural Person</option>
+                        <option value="organization">Organization</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <input type="password" ng-model="registerData.password" placeholder="Password">
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">Register</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
