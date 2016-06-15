@@ -37,11 +37,6 @@ $ bower install
 
 Issue the command `ionic serve --lab` in your project's directory.
 
-```sh
-$ 
-$ npm install
-$ bower install
-```
 
 
 License
