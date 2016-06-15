@@ -169,14 +169,6 @@ angular.module('petClient', ['ionic', 'LocalStorageModule', 'btford.socket-io', 
         }
       })
 
-      .state('app.home', {
-        url: '/home',
-        views: {
-          'mainContent': {
-            templateUrl: 'templates/home.html'
-          }
-        }
-      })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

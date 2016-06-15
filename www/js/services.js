@@ -1,6 +1,5 @@
 'use strict';
 angular.module('petClient.services', ['ngResource'])
-  //.constant("baseURL", "http://localhost:3000/")
   .constant("baseURL", "http://petserver.mybluemix.net/")
   .service('petFactory', ['$resource', 'baseURL', '$http', function ($resource, baseURL, $http) {
     this.instertPet = function (data) {
@@ -51,7 +50,6 @@ angular.module('petClient.services', ['ngResource'])
   }])
   .service('serviceFactory', ['socketFactory', function (socketFactory) {
     this.SocketService = function () {
-      //var myIoSocket = io.connect('http://localhost:3000');
       var myIoSocket = io.connect('http://petserver.mybluemix.net/');
       var socket = socketFactory({
         ioSocket: myIoSocket
@@ -64,7 +62,6 @@ angular.module('petClient.services', ['ngResource'])
     this.instertEvent = function (data) {
       console.log(data);
       return $http.post(baseURL + 'events/insert', data);
-      //return $resource(baseURL + "dishes/:id", null, { 'update': { method: 'PUT' } });
     };
     this.getEvents = function () {
       $http.get(baseURL + "events/").then(function (response) {
@@ -99,7 +96,6 @@ angular.module('petClient.services', ['ngResource'])
     }
   }])
   .factory('socket', function (socketFactory) {
-    //Create socket and connect to http://chat.socket.io 
     var myIoSocket = io.connect('http://petserver.mybluemix.net/');
 
     var mySocket = socketFactory({
